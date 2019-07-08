@@ -12,6 +12,7 @@ English: The student with ID1 likes the student with ID2. Liking someone is not 
 4. Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra. Do not count Cassandra, even though technically she is a friend of a friend. 
 
 My solution
+'''sql
 select count(*)
 from (select h2.name 
 from friend, highschooler h1, highschooler h2
@@ -20,8 +21,9 @@ union all
 select h2.name 
 from friend f1, friend f2, highschooler h1, highschooler h2
 where (f1.id1 = h1.id and f1.id2 = f2.id1 and f2.id2 = h2.id) and h1.name = 'Cassandra' and h2.name <> 'Cassandra')
-
+'''
 Better solution
+'''sql
 SELECT COUNT(*)
 FROM Friend
 WHERE ID1 IN (
@@ -33,3 +35,4 @@ WHERE ID1 IN (
     WHERE name = 'Cassandra'
   )
 );
+'''
