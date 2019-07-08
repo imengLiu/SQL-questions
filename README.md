@@ -22,9 +22,9 @@ select h2.name
 from friend f1, friend f2, highschooler h1, highschooler h2
 where (f1.id1 = h1.id and f1.id2 = f2.id1 and f2.id2 = h2.id) and h1.name = 'Cassandra' and h2.name <> 'Cassandra')
 '''
-Better solution
+
 '''sql
-SELECT COUNT(*)
+select count(*)
 FROM Friend
 WHERE ID1 IN (
   SELECT ID2
